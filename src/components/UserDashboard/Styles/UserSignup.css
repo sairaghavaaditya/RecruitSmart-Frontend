@@ -1,0 +1,202 @@
+/* .signup-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.signup-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.signup-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-form button:hover {
+    background-color: #0056b3;
+}
+
+.success-message {
+    color: green;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+} */
+
+
+
+
+
+
+
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: white; /* Changed background to white */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.signup-container {
+  width: 100%;
+  max-width: 400px; /* Maintain the original width */
+  background: #ffffff; /* Changed background to white */
+  border-radius: 12px;
+  padding: 5px 15px; /* Further reduced top, bottom, and side padding */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.signup-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+.signup-container h3 {
+  text-align: center;
+  font-size: 18px;
+  color: #3a86ff; /* Changed to blue */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Further reduced gap */
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Reduced gap */
+  border: 1px solid #ccc;
+  padding: 1px 10px; /* Added extra padding on the right to prevent icons from touching the border */
+  border-radius: 5px;
+  background: #ffffff; /* Changed background to white */
+  transition: box-shadow 0.3s;
+}
+
+.input-group:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.input-group i {
+  color: #3a86ff; /* Changed to blue */
+  margin-left: auto; /* Ensures the icon is aligned to the right */
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #ffffff; /* Changed background to white for input fields */
+}
+
+.signup-button {
+  background: #3a86ff; /* Changed to blue */
+  color: white;
+  border: none;
+  padding: 6px; /* Further reduced button padding */
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.signup-button:hover {
+  background: #2f74c0; /* Adjusted to a darker blue */
+}
+
+.signup-container p {
+  text-align: center;
+  margin-top: 6px; /* Reduced margin for compactness */
+  font-size: 14px;
+}
+
+.signup-container a {
+  color: #3a86ff; /* Changed to blue */
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px; /* Add padding to body to avoid clipping */
+  }
+
+  .signup-container {
+    width: 95%; /* Ensure full width on small screens */
+    max-width: 400px; /* Maintain original width */
+    padding: 5px 10px; /* Further reduced padding for small screens */
+  }
+
+  .input-group {
+    padding: 1px 10px; /* Further reduced padding inside input fields */
+    gap: 4px; /* Reduced gap */
+  }
+
+  .signup-button {
+    font-size: 14px;
+    padding: 5px; /* Further reduced button padding for small screens */
+  }
+
+  .signup-container h2 {
+    margin-bottom: 4px; /* Reduced margin for visibility */
+  }
+}
