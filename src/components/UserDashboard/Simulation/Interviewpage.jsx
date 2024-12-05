@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom"; // Import useParams
 import axios from "axios";
+import Webcam from "react-webcam";
 
 function InterviewPage() {
+    const { command_id } = useParams(); // Get command_id from URL params
     const [question, setQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -13,7 +16,7 @@ function InterviewPage() {
     const [submitTimer, setSubmitTimer] = useState(60); // 1 minute to submit after clicking "Answer the Question"
     const [isAnswering, setIsAnswering] = useState(false);
     const [score, setScore] = useState(0);
-
+    const webcamRef = useRef(null);
 
     const answerTimerRef = useRef(null);
     const submitTimerRef = useRef(null);
@@ -24,8 +27,8 @@ function InterviewPage() {
           setLoading(true);
           setQuestion(null); // Clear the current question while fetching the new one
           const url = id
-              ? `http://127.0.0.1:8000/api/fetch-next-question/?current_question_id=${id}`
-              : "http://127.0.0.1:8000/api/fetch-next-question/";
+          ? `http://127.0.0.1:8000/api/fetch-next-question/?current_question_id=${id}&command_id=${command_id}`
+          : `http://127.0.0.1:8000/api/fetch-next-question/?&command_id=${command_id}`;
           const response = await axios.get(url);
           const data = response.data;
   
@@ -38,6 +41,7 @@ function InterviewPage() {
               setQuestion(data);
               setCurrentQuestionId(data.id);
               resetTimers();
+              speakText(data.question);
           }
       } catch (err) {
           setError(err.message);
@@ -121,40 +125,6 @@ function InterviewPage() {
         recognition.start();
     };
 
-//     const handleSubmit = async () => {
-//       if (!userAnswer.trim()) {
-//           alert("Please provide an answer before submitting.");
-//           return;
-//       }
-  
-//       try {
-//           // Make the POST request using Axios
-//           const response = await axios.post("http://127.0.0.1:8000/api/submit-response/", {
-//               question_id: currentQuestionId,
-//               user_answer: userAnswer,
-//           });
-  
-//           // Check if the response contains the success message
-//           if (response.status === 200) {
-//               const data = response.data;
-//               setSubmitMessage(data.message || "Answer submitted successfully!");
-//               setUserAnswer("");
-//               fetchQuestion(currentQuestionId); // Fetch the next question
-//           } else {
-//               // Handle unexpected responses
-//               setSubmitMessage("An error occurred. Please try again.");
-//           }
-//       } catch (err) {
-//           // Handle request errors
-//           if (err.response) {
-//               setSubmitMessage(err.response.data.error || "An error occurred. Please try again.");
-//           } else {
-//               setSubmitMessage("A network error occurred. Please check your connection.");
-//           }
-//       } finally {
-//           if (submitTimerRef.current) clearInterval(submitTimerRef.current);
-//       }
-//   };
 
 const handleSubmit = async () => {
     if (!userAnswer.trim()) {
@@ -190,7 +160,13 @@ const handleSubmit = async () => {
     }
 };
 
-
+const speakText = (text) => {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 1; // Adjust rate as needed
+    synth.speak(utterance);
+};
   
   
   const handleSkipQuestion = () => {
@@ -214,6 +190,25 @@ const handleSubmit = async () => {
         <div style={{ textAlign: "center", padding: "20px" }}>
             <h1>Interview Question</h1>
             <h2>{isAnswering ? `Submit Time Left: ${formatTime(submitTimer)}` : `Answer Time Left: ${formatTime(answerTimer)}`}</h2>
+            
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+                <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={{
+                        width: 1280,
+                        height: 720,
+                        facingMode: "user",
+                    }}
+                    style={{
+                        width: "300px",
+                        border: "2px solid black",
+                        borderRadius: "10px",
+                        marginRight: "10px",
+                    }}
+                />
+            </div>
 
             {question && (
                 <div>

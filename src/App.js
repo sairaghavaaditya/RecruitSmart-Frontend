@@ -14,7 +14,7 @@ function App(){
   return (
     <Router>
       <Routes>
-        <Route path="/InterviewPage" element={<InterviewPage />} />
+        <Route path="/InterviewPage/:command_id" element={<InterviewPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/Dashboard" element={<Dashboard />} />

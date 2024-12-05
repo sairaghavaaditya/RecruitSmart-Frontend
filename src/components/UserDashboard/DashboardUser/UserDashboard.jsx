@@ -24,10 +24,11 @@ const UserDashboard = () => {
         fetchJobs();
     }, []);
 
-    const handleTakeInterview = (jobId) => {
+    const handleTakeInterview = (commandId) => {
         // Redirect to the Interview page with the job ID
         // navigate(`/Interviewpage/${jobId}`);
-        navigate(`/Interviewpage`);
+        console.log("Command ID:", commandId);
+        navigate(`/Interviewpage/${commandId}`);
     };
 
     return (
@@ -60,7 +61,7 @@ const UserDashboard = () => {
                                     <br />
                                     <button
                                         className="take-interview-btn"
-                                        onClick={() => handleTakeInterview(job.id)}
+                                        onClick={() => handleTakeInterview(job.command_id)}
                                     >
                                         Take Interview
                                     </button>

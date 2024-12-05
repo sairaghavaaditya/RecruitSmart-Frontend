@@ -1,3 +1,4 @@
+
 import React from "react";
 import styles from "./Home.module.css";
 
@@ -7,14 +8,13 @@ const Home = () => {
             {/* Header Section */}
             <header className={styles.mainHeader}>
                 <div className={styles.container}>
-                    <div className={styles.logo}>RAC Selector</div>
+                    <div className={styles.logo}>RECRUIT SMART!</div>
                     <nav className={styles.navMenu}>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <a href="#about">About</a>
                         <a href="#features">Features</a>
-                        <a href="/Dashboard" className={styles.signInRegister}>
-                            Sign In/Register
-                        </a>
+                        <a href="/Dashboard">Sign In/Register</a>
+                        
                     </nav>
                 </div>
             </header>
