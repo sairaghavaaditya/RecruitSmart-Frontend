@@ -18,6 +18,8 @@ function InterviewPage() {
     const [score, setScore] = useState(0);
     const webcamRef = useRef(null);
 
+  
+
     const answerTimerRef = useRef(null);
     const submitTimerRef = useRef(null);
 
@@ -159,6 +161,9 @@ const handleSubmit = async () => {
         if (submitTimerRef.current) clearInterval(submitTimerRef.current);
     }
 };
+
+
+
 
 const speakText = (text) => {
     const synth = window.speechSynthesis;
