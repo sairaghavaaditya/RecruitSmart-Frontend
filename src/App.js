@@ -8,7 +8,7 @@ import UserSignup from './components/UserDashboard/SignupUser/UserSignup';
 import AdminLogin from './components/AdminDashboard/AdminLogin.jsx'
 import UserDashboard from './components/UserDashboard/DashboardUser/UserDashboard.jsx';
 import Home from './components/Home/Homepage.jsx'
-
+import ResumeUploadPage from "./components/UserDashboard/Simulation/ResumeUploadPage.jsx";
 
 function App(){
   return (
@@ -22,6 +22,7 @@ function App(){
         <Route path="/userlogin" element={<UserLogin />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/UserDashboard" element={<UserDashboard />} />
+        <Route path="/upload-resume" element={<ResumeUploadPage />} />
       </Routes>
     </Router>
   );
